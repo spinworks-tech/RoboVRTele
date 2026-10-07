@@ -1,5 +1,7 @@
 # RoboVRTele — MuJoCo XR for Meta Quest 2 / 3 / 3S
 
+![11 robots on an arc around a table with RoboCasa objects](docs/images/hero.png)
+
 A native Quest app: MuJoCo 3.3.1 runs **on the headset** (no PC, no streaming, no Unity), OpenXR
 handles tracking and stereo, and a small OpenGL ES 3 renderer draws each eye straight from the
 simulation.
@@ -8,6 +10,15 @@ The scene: 11 robots on an arc around you (the RoboCasa line-up PandaOmron, GR1,
 plus Franka Panda, UR5e, Kinova Gen3, ALOHA, Unitree H1, Spot, Stretch 3 from mujoco_menagerie) and
 a table with RoboCasa objects. Point at a robot's hand, grab it and drag it: damped least-squares IK
 moves the arm and MuJoCo physics with self-collision keeps it from passing through itself.
+
+| | |
+|---|---|
+| ![Grabbing a Franka hand: the IK chain is orange, the pointed-at link cyan, joint panel and stats HUD](docs/images/grab.png) | ![Settings page of the in-app menu](docs/images/menu.png) |
+| **Grab and drag a hand:** IK chain in orange, the link under the ray in cyan, live joint panel (top left) and stats HUD | **Menu:** show/hide robots, joint units, self-collisions, stats panel, RoboCasa items |
+| ![Table with RoboCasa objects](docs/images/table.png) | ![GR1, G1 and Unitree H1 humanoids](docs/images/humanoids.png) |
+| **RoboCasa objects** on the table in front of you | **Humanoids:** GR1, G1 and Unitree H1 |
+
+<sub>Images are rendered by the app's own renderer (`./desktop_test.sh shots`: the same C++ code built for the desktop), so they show what the headset draws, per eye.</sub>
 
 ## Quick start: install the APK
 1. Download `MuJoCoXR-<version>.apk` from the [Releases](../../releases) page.
@@ -42,6 +53,7 @@ adb install -r mujocoxr.apk
 `./desktop_test.sh` renders the same scene with the same renderer code on your PC (EGL + GLES 3,
 needs a GPU driver and `pip install mujoco==3.3.1`): `out/front.ppm`, `out/side.ppm`, `out/table.ppm`.
 It also runs a grab + IK + physics check and prints the tracking error.
+`./desktop_test.sh shots` regenerates the README images in `docs/images/` (needs `pillow`).
 
 ### Exporting the scene yourself
 `export_robots.py` builds the robots exactly as RoboCasa builds them, so it needs a Python env with
