@@ -1,0 +1,18 @@
+# toolchain and sources fetched by setup.sh
+jdk/
+sdk/
+mujoco-src/
+mujoco-build/
+openxr/
+menagerie/
+# build outputs
+app-build/
+stage/
+out/
+*.apk
+*.idsig
+# generated scene (download from the release or run export_robots.py)
+scenes/
+# signing key: never commit
+*.keystore
+__pycache__/
